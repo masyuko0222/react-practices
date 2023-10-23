@@ -1,9 +1,8 @@
 import './App.css';
+import MemoApp from './components/MemoApp';
 
 function App() {
-  return (
-    <p>test</p>
-  );
+  return <MemoApp />
 }
 
 export default App;
