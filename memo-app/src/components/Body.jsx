@@ -20,12 +20,18 @@ export default function Body() {
   }, []);
 
   const handleAddButton = () => {
+    const newMemo = addMemo();
+    setText(newMemo.content);
+    setMode("edit");
+  };
+
+  const addMemo = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
     const nextMemos = [...memos, newMemo];
-    setText(newMemo.content);
     setMemos(nextMemos);
     saveStorage(nextMemos);
-    setMode("edit");
+
+    return newMemo;
   };
 
   const saveStorage = (memos) => {
