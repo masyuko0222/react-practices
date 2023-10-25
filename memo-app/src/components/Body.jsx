@@ -7,6 +7,7 @@ export default function Body() {
   const [memos, setMemos] = useState([]);
   const [mode, setMode] = useState("index");
   const [text, setText] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     const storagedMemos = localStorage.getItem("memos");
@@ -20,18 +21,32 @@ export default function Body() {
   }, []);
 
   const handleAddButton = () => {
-    const newMemo = addMemo();
+    const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
+    const nextMemos = [ ...memos, newMemo ];
+    save(nextMemos);
+
     setText(newMemo.content);
+    setSelectedId(newMemo.id);
     setMode("edit");
   };
 
-  const addMemo = () => {
-    const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
-    const nextMemos = [...memos, newMemo];
-    setMemos(nextMemos);
-    saveStorage(nextMemos);
+  const handleEditButton = () => {
+    const editingMemo = memos.find((memo) => memo.id === selectedId);
+    const editedMemo = { ...editingMemo, content: text };
 
-    return newMemo;
+    const nextMemos = memos.map((memo) =>
+      memo.id === selectedId ? editedMemo : memo
+    );
+    save(nextMemos);
+
+    setText("");
+    setSelectedId(null);
+    setMode("index");
+  };
+
+  const save = (memos) => {
+    setMemos(memos);
+    saveStorage(memos);
   };
 
   const saveStorage = (memos) => {
@@ -42,7 +57,13 @@ export default function Body() {
     <div>
       <MemoList memos={memos} />
       <AddButton handleAddButton={handleAddButton} />
-      {mode === "edit" && <Form text={text} setText={setText} />}
+      {mode === "edit" && (
+        <Form
+          text={text}
+          setText={setText}
+          handleEditButton={handleEditButton}
+        />
+      )}
     </div>
   );
 }

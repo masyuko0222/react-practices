@@ -1,8 +1,8 @@
-export default function Form({ text, setText }) {
+export default function Form({ text, setText, handleEditButton }) {
   return (
     <div>
       <TextArea text={text} setText={setText} />
-      <EditButton />
+      <EditButton handleEditButton={handleEditButton} />
       <DeleteButton />
     </div>
   );
@@ -18,8 +18,8 @@ const TextArea = ({ text, setText }) => {
   );
 };
 
-const EditButton = () => {
-  return <button>編集</button>;
+const EditButton = ({ handleEditButton }) => {
+  return <button onClick={handleEditButton}>編集</button>;
 };
 
 const DeleteButton = () => {
