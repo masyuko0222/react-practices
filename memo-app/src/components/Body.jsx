@@ -33,38 +33,42 @@ export default function Body() {
   const handleEditButton = () => {
     const editingMemo = memos.find((memo) => memo.id === selectedId);
     const editedMemo = { ...editingMemo, content: text };
-
     const nextMemos = memos.map((memo) =>
       memo.id === selectedId ? editedMemo : memo
     );
-    save(nextMemos);
 
-    setText("");
-    setSelectedId(null);
-    setMode("index");
+    save(nextMemos);
+    reset();
   };
 
   const handleDeleteButton = () => {
     const nextMemos = memos.filter((memo) => memo.id !== selectedId);
-    save(nextMemos);
 
+    save(nextMemos);
+    reset();
+  };
+
+  const handleClickingMemoRow = (id) => {
+    const selectedMemo = memos.find((memo) => memo.id === id);
+    setText(selectedMemo.content);
+    setSelectedId(selectedMemo.id);
+    setMode("edit");
+  };
+
+  const save = (memos) => {
+    setMemos(memos);
+    localStorage.setItem("memos", JSON.stringify(memos));
+  };
+
+  const reset = () => {
     setText("");
     setSelectedId(null);
     setMode("index");
   };
 
-  const save = (memos) => {
-    setMemos(memos);
-    saveStorage(memos);
-  };
-
-  const saveStorage = (memos) => {
-    localStorage.setItem("memos", JSON.stringify(memos));
-  };
-
   return (
     <div>
-      <MemoList memos={memos} />
+      <MemoList memos={memos} handleClickingMemoRow={handleClickingMemoRow} />
       <AddButton handleAddButton={handleAddButton} />
       {mode === "edit" && (
         <Form
