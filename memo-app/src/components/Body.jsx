@@ -25,46 +25,50 @@ export default function Body() {
   const handleAddButton = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
     const nextMemos = [...memos, newMemo];
-    save(nextMemos);
 
-    setText(newMemo.content);
-    setSelectedId(newMemo.id);
-    setMode("edit");
+    save(nextMemos);
+    edit(newMemo);
   };
 
   const handleEditButton = () => {
-    const editingMemo = memos.find((memo) => memo.id === selectedId);
-    const editedMemo = { ...editingMemo, content: text };
-    const nextMemos = memos.map((memo) =>
-      memo.id === selectedId ? editedMemo : memo,
+    const selectedMemo = memos.find((memo) => memo.id === selectedId);
+    const updatedMemo = { ...selectedMemo, content: text };
+
+    const updatedMemos = memos.map((memo) =>
+      memo.id === selectedId ? updatedMemo : memo
     );
 
     // 編集ボタンだけどやってることは保存。保存ボタンの方が良いかも
-    save(nextMemos);
-    reset();
+    save(updatedMemos);
+    renderIndex();
   };
 
   const handleDeleteButton = () => {
-    const nextMemos = memos.filter((memo) => memo.id !== selectedId);
+    const memosAfterDeletion = memos.filter((memo) => memo.id !== selectedId);
 
-    save(nextMemos);
-    reset();
+    save(memosAfterDeletion);
+    renderIndex();
   };
 
   const handleClickingMemoRow = (id) => {
     const selectedMemo = memos.find((memo) => memo.id === id);
-    setText(selectedMemo.content);
-    setSelectedId(selectedMemo.id);
-    setMode("edit");
+
+    edit(selectedMemo);
   };
 
   // DRYにするための関数たち
+  const edit = (memo) => {
+    setText(memo.content);
+    setSelectedId(memo.id);
+    setMode("edit");
+  };
+
   const save = (memos) => {
     setMemos(memos);
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
-  const reset = () => {
+  const renderIndex = () => {
     setText("");
     setSelectedId(null);
     setMode("index");
