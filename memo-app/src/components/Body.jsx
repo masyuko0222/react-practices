@@ -36,7 +36,7 @@ export default function Body() {
     const editingMemo = memos.find((memo) => memo.id === selectedId);
     const editedMemo = { ...editingMemo, content: text };
     const nextMemos = memos.map((memo) =>
-      memo.id === selectedId ? editedMemo : memo
+      memo.id === selectedId ? editedMemo : memo,
     );
 
     // 編集ボタンだけどやってることは保存。保存ボタンの方が良いかも
