@@ -1,3 +1,4 @@
+import 'destyle.css';
 import './App.css';
 import MemoApp from './components/MemoApp';
 
