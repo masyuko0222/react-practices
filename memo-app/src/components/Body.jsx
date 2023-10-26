@@ -9,6 +9,7 @@ export default function Body() {
   const [text, setText] = useState("");
   const [selectedId, setSelectedId] = useState(null);
 
+  //Effect。初回レンダーときのみ実行。
   useEffect(() => {
     const storagedMemos = localStorage.getItem("memos");
 
@@ -20,6 +21,7 @@ export default function Body() {
     }
   }, []);
 
+  // イベントハンドラ。"+", "編集", "削除"ボタン。
   const handleAddButton = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
     const nextMemos = [...memos, newMemo];
@@ -37,6 +39,7 @@ export default function Body() {
       memo.id === selectedId ? editedMemo : memo
     );
 
+    // 編集ボタンだけどやってることは保存。保存ボタンの方が良いかも
     save(nextMemos);
     reset();
   };
@@ -55,6 +58,7 @@ export default function Body() {
     setMode("edit");
   };
 
+  // DRYにするための関数たち
   const save = (memos) => {
     setMemos(memos);
     localStorage.setItem("memos", JSON.stringify(memos));
@@ -66,6 +70,7 @@ export default function Body() {
     setMode("index");
   };
 
+  // コンポーネント戻り値
   return (
     <div>
       <MemoList memos={memos} onClickMemo={handleClickingMemoRow} />
