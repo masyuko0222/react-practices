@@ -68,14 +68,14 @@ export default function Body() {
 
   return (
     <div>
-      <MemoList memos={memos} handleClickingMemoRow={handleClickingMemoRow} />
-      <AddButton handleAddButton={handleAddButton} />
+      <MemoList memos={memos} onClickMemo={handleClickingMemoRow} />
+      <AddButton onClickAdd={handleAddButton} />
       {mode === "edit" && (
         <Form
           text={text}
           setText={setText}
-          handleEditButton={handleEditButton}
-          handleDeleteButton={handleDeleteButton}
+          onClickEdit={handleEditButton}
+          onClickDelete={handleDeleteButton}
         />
       )}
     </div>

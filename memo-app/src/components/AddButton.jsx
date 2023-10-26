@@ -1,3 +1,3 @@
-export default function AddButton({ handleAddButton }) {
-  return <button onClick={handleAddButton}>+</button>;
+export default function AddButton({ onClickAdd }) {
+  return <button onClick={onClickAdd}>+</button>;
 }

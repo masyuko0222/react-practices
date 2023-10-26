@@ -1,4 +1,4 @@
-export default function MemoList({ memos, handleClickingMemoRow }) {
+export default function MemoList({ memos, onClickMemo }) {
   return (
     <div>
       {memos.map((memo) => (
@@ -6,18 +6,18 @@ export default function MemoList({ memos, handleClickingMemoRow }) {
           key={memo.id}
           id={memo.id}
           title={memo.content.split("\n")[0].trim()}
-          handleClickingMemoRow={handleClickingMemoRow}
+          onClickMemo={onClickMemo}
         />
       ))}
     </div>
   );
 }
 
-const MemoRow = ({ id, title, handleClickingMemoRow }) => {
+const MemoRow = ({ id, title, onClickMemo }) => {
   return (
     <p
       onClick={() => {
-        handleClickingMemoRow(id);
+        onClickMemo(id);
       }}
     >
       {title}

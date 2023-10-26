@@ -1,14 +1,9 @@
-export default function Form({
-  text,
-  setText,
-  handleEditButton,
-  handleDeleteButton,
-}) {
+export default function Form({ text, setText, onClickEdit, onClickDelete }) {
   return (
     <div>
       <TextArea text={text} setText={setText} />
-      <EditButton handleEditButton={handleEditButton} />
-      <DeleteButton handleDeleteButton={handleDeleteButton} />
+      <EditButton onClickEdit={onClickEdit} />
+      <DeleteButton onClickDelete={onClickDelete} />
     </div>
   );
 }
@@ -23,10 +18,10 @@ const TextArea = ({ text, setText }) => {
   );
 };
 
-const EditButton = ({ handleEditButton }) => {
-  return <button onClick={handleEditButton}>編集</button>;
+const EditButton = ({ onClickEdit }) => {
+  return <button onClick={onClickEdit}>編集</button>;
 };
 
-const DeleteButton = ({ handleDeleteButton }) => {
-  return <button onClick={handleDeleteButton}>削除</button>;
+const DeleteButton = ({ onClickDelete }) => {
+  return <button onClick={onClickDelete}>削除</button>;
 };
