@@ -22,7 +22,7 @@ export default function Body() {
 
   const handleAddButton = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
-    const nextMemos = [ ...memos, newMemo ];
+    const nextMemos = [...memos, newMemo];
     save(nextMemos);
 
     setText(newMemo.content);
@@ -37,6 +37,15 @@ export default function Body() {
     const nextMemos = memos.map((memo) =>
       memo.id === selectedId ? editedMemo : memo
     );
+    save(nextMemos);
+
+    setText("");
+    setSelectedId(null);
+    setMode("index");
+  };
+
+  const handleDeleteButton = () => {
+    const nextMemos = memos.filter((memo) => memo.id !== selectedId);
     save(nextMemos);
 
     setText("");
@@ -62,6 +71,7 @@ export default function Body() {
           text={text}
           setText={setText}
           handleEditButton={handleEditButton}
+          handleDeleteButton={handleDeleteButton}
         />
       )}
     </div>
