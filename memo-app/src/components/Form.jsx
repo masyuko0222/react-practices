@@ -1,19 +1,26 @@
-export default function Form({ text, setText, onClickEdit, onClickDelete }) {
+export default function Form({
+  text,
+  onClickEdit,
+  onClickDelete,
+  onChangeText,
+}) {
   return (
     <div>
-      <TextArea text={text} setText={setText} />
+      <TextArea text={text} onChangeText={onChangeText} />
       <EditButton onClickEdit={onClickEdit} />
       <DeleteButton onClickDelete={onClickDelete} />
     </div>
   );
 }
 
-const TextArea = ({ text, setText }) => {
+const TextArea = ({ text, onChangeText }) => {
   return (
     <textarea
       placeholder="メモを入力"
       value={text}
-      onChange={(e) => setText(e.target.value)}
+      onChange={(e) => {
+        onChangeText(e);
+      }}
     ></textarea>
   );
 };

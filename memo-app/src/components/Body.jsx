@@ -56,6 +56,11 @@ export default function Body() {
     edit(selectedMemo);
   };
 
+  const handleTextChange = (e) => {
+    // 副作用を伴うので、直接渡さずイベントハンドラとして制御する
+    setText(e.target.value);
+  };
+
   // DRYにするための関数たち
   const edit = (memo) => {
     setText(memo.content);
@@ -82,9 +87,9 @@ export default function Body() {
       {mode === "edit" && (
         <Form
           text={text}
-          setText={setText}
           onClickEdit={handleEditButton}
           onClickDelete={handleDeleteButton}
+          onChangeText={handleTextChange}
         />
       )}
     </div>
