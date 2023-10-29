@@ -28,6 +28,10 @@ export default function Body() {
   };
 
   const handleEditButton = () => {
+    if (text === null || text === undefined || text.trim() === "") {
+      alert("保存するメモの内容を書いてください。");
+      return;
+    }
     const targetMemo = memoIndex.find((memo) => memo.id === targetId);
     const updatedMemos = memoIndex.map((memo) =>
       memo.id === targetId ? { ...targetMemo, content: text } : memo
