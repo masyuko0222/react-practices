@@ -3,9 +3,8 @@ import MemoList from "./MemoList";
 import AddButton from "./AddButton";
 import Form from "./Form";
 
-export default function Body() {
+export default function Body({mode, setMode}) {
   const [memoIndex, setMemoIndex] = useState([]);
-  const [mode, setMode] = useState("index");
   const [text, setText] = useState("");
   const [targetId, setTargetId] = useState(null);
 
