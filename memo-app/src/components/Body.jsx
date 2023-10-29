@@ -7,71 +7,70 @@ export default function Body() {
   const [memoIndex, setMemoIndex] = useState([]);
   const [mode, setMode] = useState("index");
   const [text, setText] = useState("");
-  const [selectedId, setSelectedId] = useState(null);
+  const [targetId, setTargetId] = useState(null);
 
   useEffect(() => {
-    const storagedMemos = localStorage.getItem("memos");
+    const jsonAllMemos = localStorage.getItem("memos");
 
-    if (storagedMemos) {
-      const parsedMemos = JSON.parse(storagedMemos);
-      setMemoIndex(parsedMemos);
+    if (jsonAllMemos) {
+      const allMemos = JSON.parse(jsonAllMemos);
+      setMemoIndex(allMemos);
     } else {
       setMemoIndex([]);
     }
   }, []);
 
   const handleAddButton = () => {
-    const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
-    const nextMemos = [...memoIndex, newMemo];
+    const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
-    save(nextMemos);
-    edit(newMemo);
+    saveStorage([...memoIndex, createdNewMemo]);
+    openForm(createdNewMemo);
   };
 
   const handleEditButton = () => {
-    const selectedMemo = memoIndex.find((memo) => memo.id === selectedId);
-    const updatedMemo = { ...selectedMemo, content: text };
-
+    const targetMemo = memoIndex.find((memo) => memo.id === targetId);
     const updatedMemos = memoIndex.map((memo) =>
-      memo.id === selectedId ? updatedMemo : memo
+      memo.id === targetId ? { ...targetMemo, content: text } : memo
     );
 
-    save(updatedMemos);
-    renderIndex();
+    saveStorage(updatedMemos);
+    resetStates();
+    setMode("index");
   };
 
   const handleDeleteButton = () => {
-    const memosAfterDeletion = memoIndex.filter((memo) => memo.id !== selectedId);
+    const oneLessMemos = memoIndex.filter((memo) => memo.id !== targetId);
 
-    save(memosAfterDeletion);
-    renderIndex();
+    saveStorage(oneLessMemos);
+    resetStates();
+    setMode("index");
   };
 
   const handleClickingMemoRow = (id) => {
-    const selectedMemo = memoIndex.find((memo) => memo.id === id);
+    const targetMemo = memoIndex.find((memo) => memo.id === id);
 
-    edit(selectedMemo);
+    openForm(targetMemo);
   };
 
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
 
-  const edit = (memo) => {
+  // for DRY functions
+  const openForm = (memo) => {
     setText(memo.content);
-    setSelectedId(memo.id);
+    setTargetId(memo.id);
     setMode("edit");
   };
 
-  const save = (memos) => {
+  const saveStorage = (memos) => {
     setMemoIndex(memos);
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
-  const renderIndex = () => {
+  const resetStates = () => {
     setText("");
-    setSelectedId(null);
-    setMode("index");
+    setTargetId(null);
   };
 
   return (
