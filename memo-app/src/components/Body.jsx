@@ -33,7 +33,7 @@ export default function Body({ mode, setMode }) {
     }
     const targetMemo = memoIndex.find((memo) => memo.id === targetId);
     const updatedMemos = memoIndex.map((memo) =>
-      memo.id === targetId ? { ...targetMemo, content: text } : memo
+      memo.id === targetId ? { ...targetMemo, content: text } : memo,
     );
 
     saveStorage(updatedMemos);
@@ -78,7 +78,11 @@ export default function Body({ mode, setMode }) {
   return (
     <div>
       <div className="main-container">
-        <MemoList memoIndex={memoIndex} onClickMemo={handleClickingMemoRow} targetId={targetId}/>
+        <MemoList
+          memoIndex={memoIndex}
+          onClickMemo={handleClickingMemoRow}
+          targetId={targetId}
+        />
         <AddButton onClickAdd={handleAddButton} mode={mode} />
       </div>
       <div className="form-container">
