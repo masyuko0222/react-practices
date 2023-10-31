@@ -23,7 +23,7 @@ export default function Body({ mode, setMode }) {
     const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
     saveStorage([...memoIndex, createdNewMemo]);
-    openForm(createdNewMemo);
+    openForm(createdNewMemo, "new");
   };
 
   const handleEditButton = () => {
@@ -37,22 +37,20 @@ export default function Body({ mode, setMode }) {
     );
 
     saveStorage(updatedMemos);
-    resetStates();
-    setMode("index");
+    reset("index");
   };
 
   const handleDeleteButton = () => {
     const oneLessMemos = memoIndex.filter((memo) => memo.id !== targetId);
 
     saveStorage(oneLessMemos);
-    resetStates();
-    setMode("index");
+    reset("index");
   };
 
   const handleClickingMemoRow = (id) => {
     const targetMemo = memoIndex.find((memo) => memo.id === id);
 
-    openForm(targetMemo);
+    openForm(targetMemo, "edit");
   };
 
   const handleTextChange = (e) => {
@@ -60,10 +58,10 @@ export default function Body({ mode, setMode }) {
   };
 
   // for DRY functions
-  const openForm = (memo) => {
+  const openForm = (memo, mode) => {
     setText(memo.content);
     setTargetId(memo.id);
-    setMode("edit");
+    setMode(mode);
   };
 
   const saveStorage = (memos) => {
@@ -71,19 +69,20 @@ export default function Body({ mode, setMode }) {
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
-  const resetStates = () => {
+  const reset = (mode) => {
     setText("");
     setTargetId(null);
+    setMode(mode);
   };
 
   return (
     <div>
       <div className="main-container">
-        <MemoList memoIndex={memoIndex} onClickMemo={handleClickingMemoRow} />
-        <AddButton onClickAdd={handleAddButton} />
+        <MemoList memoIndex={memoIndex} onClickMemo={handleClickingMemoRow} targetId={targetId}/>
+        <AddButton onClickAdd={handleAddButton} mode={mode} />
       </div>
       <div className="form-container">
-        {mode === "edit" && (
+        {mode !== "index" && (
           <Form
             text={text}
             onClickEdit={handleEditButton}

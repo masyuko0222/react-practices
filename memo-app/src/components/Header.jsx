@@ -6,6 +6,7 @@ export default function Header({ mode }) {
       title = "一覧";
       break;
     case "edit":
+    case "new":
       title = "編集";
       break;
     default:
