@@ -12,5 +12,5 @@ export default function Header({ mode }) {
       new Error("modeは一覧か編集のみしか許可されていません。");
   }
 
-  return <h1>{title}</h1>;
+  return <span className="header__title header__title--gray">{title}</span>;
 }

@@ -7,10 +7,10 @@ export default function MemoApp() {
 
   return (
     <div>
-      <div>
+      <div className="header">
         <Header mode={mode} />
       </div>
-      <div>
+      <div className="body">
         <Body mode={mode} setMode={setMode} />
       </div>
     </div>

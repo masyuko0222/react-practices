@@ -7,8 +7,10 @@ export default function Form({
   return (
     <div>
       <TextArea text={text} onChangeText={onChangeText} />
-      <EditButton onClickEdit={onClickEdit} />
-      <DeleteButton onClickDelete={onClickDelete} />
+      <div className="form-container__buttons">
+        <EditButton onClickEdit={onClickEdit} />
+        <DeleteButton onClickDelete={onClickDelete} />
+      </div>
     </div>
   );
 }
@@ -16,6 +18,7 @@ export default function Form({
 const TextArea = ({ text, onChangeText }) => {
   return (
     <textarea
+      className="form-container__text-area"
       placeholder="メモを入力"
       value={text}
       onChange={(e) => {
@@ -26,9 +29,17 @@ const TextArea = ({ text, onChangeText }) => {
 };
 
 const EditButton = ({ onClickEdit }) => {
-  return <button onClick={onClickEdit}>編集</button>;
+  return (
+    <button className="form-container__buttons--edit" onClick={onClickEdit}>
+      編集
+    </button>
+  );
 };
 
 const DeleteButton = ({ onClickDelete }) => {
-  return <button onClick={onClickDelete}>削除</button>;
+  return (
+    <button className="form-container__buttons--delete" onClick={onClickDelete}>
+      削除
+    </button>
+  );
 };

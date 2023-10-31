@@ -1,6 +1,6 @@
 export default function MemoList({ memoIndex, onClickMemo }) {
   return (
-    <div>
+    <div className="main-container__memo-list">
       {memoIndex.map((memo) => (
         <MemoRow
           key={memo.id}
@@ -16,6 +16,7 @@ export default function MemoList({ memoIndex, onClickMemo }) {
 const MemoRow = ({ id, title, onClickMemo }) => {
   return (
     <p
+      className="main-container__memo-list--title"
       onClick={() => {
         onClickMemo(id);
       }}

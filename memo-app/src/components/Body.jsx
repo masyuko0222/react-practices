@@ -3,7 +3,7 @@ import MemoList from "./MemoList";
 import AddButton from "./AddButton";
 import Form from "./Form";
 
-export default function Body({mode, setMode}) {
+export default function Body({ mode, setMode }) {
   const [memoIndex, setMemoIndex] = useState([]);
   const [text, setText] = useState("");
   const [targetId, setTargetId] = useState(null);
@@ -78,16 +78,20 @@ export default function Body({mode, setMode}) {
 
   return (
     <div>
-      <MemoList memoIndex={memoIndex} onClickMemo={handleClickingMemoRow} />
-      <AddButton onClickAdd={handleAddButton} />
-      {mode === "edit" && (
-        <Form
-          text={text}
-          onClickEdit={handleEditButton}
-          onClickDelete={handleDeleteButton}
-          onChangeText={handleTextChange}
-        />
-      )}
+      <div className="main-container">
+        <MemoList memoIndex={memoIndex} onClickMemo={handleClickingMemoRow} />
+        <AddButton onClickAdd={handleAddButton} />
+      </div>
+      <div className="form-container">
+        {mode === "edit" && (
+          <Form
+            text={text}
+            onClickEdit={handleEditButton}
+            onClickDelete={handleDeleteButton}
+            onChangeText={handleTextChange}
+          />
+        )}
+      </div>
     </div>
   );
 }
