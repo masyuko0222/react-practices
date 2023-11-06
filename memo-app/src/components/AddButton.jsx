@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 export default function AddButton({ onClickAdd, mode }) {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-
   const color = mode === "new" ? "black" : "blue";
 
   return (
@@ -10,7 +6,6 @@ export default function AddButton({ onClickAdd, mode }) {
       className="main-container--add-button"
       style={{ color: color }}
       onClick={() => {
-        setIsButtonClicked(!isButtonClicked);
         onClickAdd();
       }}
     >
