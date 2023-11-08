@@ -1,10 +1,10 @@
 - MemoApp
-  - Header
-  - Body
+  - MemoHeaderTitle
+  - MemoBody
     - MemoList
       - MemoRow
     - AddButton
-    - Form
+    - MemoForm
       - TextArea
       - EditButton
       - DeleteButton
