@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Header from "./Header";
-import Body from "./Body";
+import MemoHeaderTitle from "./MemoHeaderTitle";
+import MemoBody from "./MemoBody";
 
 export default function MemoApp() {
   const [mode, setMode] = useState("index");
@@ -8,10 +8,10 @@ export default function MemoApp() {
   return (
     <div>
       <div className="header">
-        <Header mode={mode} />
+        <MemoHeaderTitle mode={mode} />
       </div>
       <div className="body">
-        <Body mode={mode} setMode={setMode} />
+        <MemoBody mode={mode} setMode={setMode} />
       </div>
     </div>
   );

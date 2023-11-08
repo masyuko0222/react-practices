@@ -1,4 +1,4 @@
-export default function Header({ mode }) {
+export default function MemoHeaderTitle({ mode }) {
   let title;
 
   switch (mode) {

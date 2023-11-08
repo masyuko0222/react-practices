@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import MemoList from "./MemoList";
 import AddButton from "./AddButton";
-import Form from "./Form";
+import MemoForm from "./MemoForm";
 
-export default function Body({ mode, setMode }) {
+export default function MemoBody({ mode, setMode }) {
   const [memoIndex, setMemoIndex] = useState([]);
   const [text, setText] = useState("");
   const [targetId, setTargetId] = useState(null);
@@ -23,7 +23,7 @@ export default function Body({ mode, setMode }) {
     const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
     saveStorage([...memoIndex, createdNewMemo]);
-    openForm(createdNewMemo, "new");
+    openMemoForm(createdNewMemo, "new");
   };
 
   const handleEditButton = () => {
@@ -50,7 +50,7 @@ export default function Body({ mode, setMode }) {
   const handleClickingMemoRow = (id) => {
     const targetMemo = memoIndex.find((memo) => memo.id === id);
 
-    openForm(targetMemo, "edit");
+    openMemoForm(targetMemo, "edit");
   };
 
   const handleTextChange = (e) => {
@@ -58,7 +58,7 @@ export default function Body({ mode, setMode }) {
   };
 
   // for DRY functions
-  const openForm = (memo, mode) => {
+  const openMemoForm = (memo, mode) => {
     setText(memo.content);
     setTargetId(memo.id);
     setMode(mode);
@@ -87,7 +87,7 @@ export default function Body({ mode, setMode }) {
       </div>
       <div className="form-container">
         {mode !== "index" && (
-          <Form
+          <MemoForm
             text={text}
             onClickEdit={handleEditButton}
             onClickDelete={handleDeleteButton}

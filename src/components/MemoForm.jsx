@@ -1,4 +1,4 @@
-export default function Form({
+export default function MemoForm({
   text,
   onClickEdit,
   onClickDelete,
