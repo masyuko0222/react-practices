@@ -4,7 +4,7 @@ import AddButton from "./AddButton";
 import MemoForm from "./MemoForm";
 
 export default function MemoBody({ mode, setMode }) {
-  const [memoIndex, setMemoIndex] = useState([]);
+  const [allMemos, setAllMemos] = useState([]);
   const [text, setText] = useState("");
   const [targetId, setTargetId] = useState(null);
 
@@ -13,16 +13,16 @@ export default function MemoBody({ mode, setMode }) {
 
     if (jsonAllMemos) {
       const allMemos = JSON.parse(jsonAllMemos);
-      setMemoIndex(allMemos);
+      setAllMemos(allMemos);
     } else {
-      setMemoIndex([]);
+      setAllMemos([]);
     }
   }, []);
 
   const handleAddButton = () => {
     const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
-    saveStorage([...memoIndex, createdNewMemo]);
+    saveStorage([...allMemos, createdNewMemo]);
     openMemoForm(createdNewMemo, "new");
   };
 
@@ -31,8 +31,8 @@ export default function MemoBody({ mode, setMode }) {
       alert("保存するメモの内容を書いてください。");
       return;
     }
-    const targetMemo = memoIndex.find((memo) => memo.id === targetId);
-    const updatedMemos = memoIndex.map((memo) =>
+    const targetMemo = allMemos.find((memo) => memo.id === targetId);
+    const updatedMemos = allMemos.map((memo) =>
       memo.id === targetId ? { ...targetMemo, content: text } : memo,
     );
 
@@ -41,14 +41,14 @@ export default function MemoBody({ mode, setMode }) {
   };
 
   const handleDeleteButton = () => {
-    const oneLessMemos = memoIndex.filter((memo) => memo.id !== targetId);
+    const oneLessMemos = allMemos.filter((memo) => memo.id !== targetId);
 
     saveStorage(oneLessMemos);
     reset("index");
   };
 
   const handleClickingMemoRow = (id) => {
-    const targetMemo = memoIndex.find((memo) => memo.id === id);
+    const targetMemo = allMemos.find((memo) => memo.id === id);
 
     openMemoForm(targetMemo, "edit");
   };
@@ -65,7 +65,7 @@ export default function MemoBody({ mode, setMode }) {
   };
 
   const saveStorage = (memos) => {
-    setMemoIndex(memos);
+    setAllMemos(memos);
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
@@ -79,7 +79,7 @@ export default function MemoBody({ mode, setMode }) {
     <div>
       <div className="main-container">
         <MemoList
-          memoIndex={memoIndex}
+          allMemos={allMemos}
           onClickMemo={handleClickingMemoRow}
           targetId={targetId}
         />

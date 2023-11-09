@@ -1,7 +1,7 @@
-export default function MemoList({ memoIndex, onClickMemo, targetId }) {
+export default function MemoList({ allMemos, onClickMemo, targetId }) {
   return (
     <div className="main-container__memo-list">
-      {memoIndex.map((memo) => (
+      {allMemos.map((memo) => (
         <MemoRow
           key={memo.id}
           id={memo.id}
