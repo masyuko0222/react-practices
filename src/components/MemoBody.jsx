@@ -5,7 +5,7 @@ import MemoForm from "./MemoForm";
 
 export default function MemoBody({ mode, setMode }) {
   const [allMemos, setAllMemos] = useState([]);
-  const [text, setText] = useState("");
+  const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState({});
 
   useEffect(() => {
@@ -18,6 +18,7 @@ export default function MemoBody({ mode, setMode }) {
     }
   }, []);
 
+  // Ivent Handlers
   const handleAddButtonClick = () => {
     const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
@@ -26,13 +27,13 @@ export default function MemoBody({ mode, setMode }) {
   };
 
   const handleEditButtonClick = () => {
-    if (text === null || text === undefined || text.trim() === "") {
+    if (formText === null || formText === undefined || formText.trim() === "") {
       alert("保存するメモの内容を書いてください。");
       return;
     }
 
     const updatedMemos = allMemos.map((memo) =>
-      memo.id === editingMemo.id ? { ...editingMemo, content: text } : memo
+      memo.id === editingMemo.id ? { ...editingMemo, content: formText } : memo
     );
 
     saveStorage(updatedMemos);
@@ -51,14 +52,10 @@ export default function MemoBody({ mode, setMode }) {
     openMemoForm(clickedMemo, "edit");
   };
 
-  const handleTextChange = (e) => {
-    setText(e.target.value);
-  };
-
   // for DRY functions
   const openMemoForm = (memo, mode) => {
     setEditingMemo(memo);
-    setText(memo.content);
+    setFormText(memo.content);
     setMode(mode);
   };
 
@@ -68,7 +65,7 @@ export default function MemoBody({ mode, setMode }) {
   };
 
   const reset = (mode) => {
-    setText("");
+    setFormText("");
     setMode(mode);
   };
 
@@ -81,10 +78,10 @@ export default function MemoBody({ mode, setMode }) {
       <div className="form-container">
         {mode !== "index" && (
           <MemoForm
-            text={text}
+            formText={formText}
+            setFormText={setFormText}
             onEditButtonClick={handleEditButtonClick}
             onDeleteButtonClick={handleDeleteButtonClick}
-            onChangeText={handleTextChange}
           />
         )}
       </div>

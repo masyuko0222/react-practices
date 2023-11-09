@@ -1,12 +1,12 @@
 export default function MemoForm({
-  text,
+  formText,
+  setFormText,
   onEditButtonClick,
   onDeleteButtonClick,
-  onChangeText,
 }) {
   return (
     <div>
-      <TextArea text={text} onChangeText={onChangeText} />
+      <TextArea formText={formText} setFormText={setFormText} />
       <div className="form-container__buttons">
         <EditButton onEditButtonClick={onEditButtonClick} />
         <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
@@ -15,14 +15,18 @@ export default function MemoForm({
   );
 }
 
-const TextArea = ({ text, onChangeText }) => {
+const TextArea = ({ formText, setFormText }) => {
+  const handleTextChange = (e) => {
+    setFormText(e.target.value);
+  };
+
   return (
     <textarea
       className="form-container__text-area"
       placeholder="メモを入力"
-      value={text}
+      value={formText}
       onChange={(e) => {
-        onChangeText(e);
+        handleTextChange(e);
       }}
     ></textarea>
   );
@@ -30,7 +34,10 @@ const TextArea = ({ text, onChangeText }) => {
 
 const EditButton = ({ onEditButtonClick }) => {
   return (
-    <button className="form-container__buttons--edit" onClick={onEditButtonClick}>
+    <button
+      className="form-container__buttons--edit"
+      onClick={onEditButtonClick}
+    >
       編集
     </button>
   );
@@ -38,7 +45,10 @@ const EditButton = ({ onEditButtonClick }) => {
 
 const DeleteButton = ({ onDeleteButtonClick }) => {
   return (
-    <button className="form-container__buttons--delete" onClick={onDeleteButtonClick}>
+    <button
+      className="form-container__buttons--delete"
+      onClick={onDeleteButtonClick}
+    >
       削除
     </button>
   );
