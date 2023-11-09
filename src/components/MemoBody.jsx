@@ -6,7 +6,7 @@ import MemoForm from "./MemoForm";
 export default function MemoBody({ mode, setMode }) {
   const [allMemos, setAllMemos] = useState([]);
   const [text, setText] = useState("");
-  const [targetId, setTargetId] = useState(null);
+  const [editingMemo, setEditingMemo] = useState({});
 
   useEffect(() => {
     const jsonAllMemos = localStorage.getItem("memos");
@@ -30,9 +30,9 @@ export default function MemoBody({ mode, setMode }) {
       alert("保存するメモの内容を書いてください。");
       return;
     }
-    const targetMemo = allMemos.find((memo) => memo.id === targetId);
+
     const updatedMemos = allMemos.map((memo) =>
-      memo.id === targetId ? { ...targetMemo, content: text } : memo,
+      memo.id === editingMemo.id ? { ...editingMemo, content: text } : memo
     );
 
     saveStorage(updatedMemos);
@@ -40,16 +40,15 @@ export default function MemoBody({ mode, setMode }) {
   };
 
   const handleDeleteButtonClick = () => {
-    const oneLessMemos = allMemos.filter((memo) => memo.id !== targetId);
+    const oneLessMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
     saveStorage(oneLessMemos);
     reset("index");
   };
 
   const handleMemoRowClick = (id) => {
-    const targetMemo = allMemos.find((memo) => memo.id === id);
-
-    openMemoForm(targetMemo, "edit");
+    const clickedMemo = allMemos.find((memo) => id === memo.id);
+    openMemoForm(clickedMemo, "edit");
   };
 
   const handleTextChange = (e) => {
@@ -58,8 +57,8 @@ export default function MemoBody({ mode, setMode }) {
 
   // for DRY functions
   const openMemoForm = (memo, mode) => {
+    setEditingMemo(memo);
     setText(memo.content);
-    setTargetId(memo.id);
     setMode(mode);
   };
 
@@ -70,18 +69,13 @@ export default function MemoBody({ mode, setMode }) {
 
   const reset = (mode) => {
     setText("");
-    setTargetId(null);
     setMode(mode);
   };
 
   return (
     <div>
       <div className="main-container">
-        <MemoList
-          allMemos={allMemos}
-          onMemoRowClick={handleMemoRowClick}
-          targetId={targetId}
-        />
+        <MemoList allMemos={allMemos} onMemoRowClick={handleMemoRowClick} />
         <AddButton onClickAdd={handleAddButtonClick} mode={mode} />
       </div>
       <div className="form-container">
