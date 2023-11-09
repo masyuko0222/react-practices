@@ -19,7 +19,7 @@ const MemoRow = ({ id, title, onClickMemo, isTarget }) => {
 
   return (
     <p
-      style={{ color: color }}
+      style={{ color }}
       className="main-container__memo-list--title"
       onClick={() => {
         onClickMemo(id);
