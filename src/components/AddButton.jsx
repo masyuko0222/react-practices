@@ -1,4 +1,4 @@
-export default function AddButton({ onClickAdd, action }) {
+export default function AddButton({ onAddButtonClick, action }) {
   const color = action === "new" ? "black" : "blue";
 
   return (
@@ -6,7 +6,7 @@ export default function AddButton({ onClickAdd, action }) {
       className="main-container--add-button"
       style={{ color }}
       onClick={() => {
-        onClickAdd();
+        onAddButtonClick();
       }}
     >
       +

@@ -78,7 +78,7 @@ export default function MemoBody({ action, setAction }) {
           onMemoTitleClick={handleMemoTitleClick}
           editingMemo={editingMemo}
         />
-        <AddButton onClickAdd={handleAddButtonClick} action={action} />
+        <AddButton onAddButtonClick={handleAddButtonClick} action={action} />
       </div>
       <div className="form-container">
         {action !== "index" && (
