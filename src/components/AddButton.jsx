@@ -4,7 +4,7 @@ export default function AddButton({ onClickAdd, action }) {
   return (
     <button
       className="main-container--add-button"
-      style={{ color: color }}
+      style={{ color }}
       onClick={() => {
         onClickAdd();
       }}

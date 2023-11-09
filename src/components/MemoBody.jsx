@@ -37,14 +37,14 @@ export default function MemoBody({ action, setAction }) {
     );
 
     saveStorage(updatedMemos);
-    reset("index");
+    render("index");
   };
 
   const handleDeleteButtonClick = () => {
     const oneLessMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
     saveStorage(oneLessMemos);
-    reset("index");
+    render("index");
   };
 
   const handleMemoTitleClick = (id) => {
@@ -64,15 +64,20 @@ export default function MemoBody({ action, setAction }) {
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
-  const reset = (action) => {
+  const render = (action) => {
     setFormText("");
+    setEditingMemo({});
     setAction(action);
   };
 
   return (
     <div>
       <div className="main-container">
-        <MemoList allMemos={allMemos} onMemoTitleClick={handleMemoTitleClick} />
+        <MemoList
+          allMemos={allMemos}
+          onMemoTitleClick={handleMemoTitleClick}
+          editingMemo={editingMemo}
+        />
         <AddButton onClickAdd={handleAddButtonClick} action={action} />
       </div>
       <div className="form-container">
