@@ -12,8 +12,7 @@ export default function MemoBody({ mode, setMode }) {
     const jsonAllMemos = localStorage.getItem("memos");
 
     if (jsonAllMemos) {
-      const allMemos = JSON.parse(jsonAllMemos);
-      setAllMemos(allMemos);
+      setAllMemos(JSON.parse(jsonAllMemos));
     } else {
       setAllMemos([]);
     }
