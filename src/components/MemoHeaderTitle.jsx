@@ -1,7 +1,7 @@
-export default function MemoHeaderTitle({ mode }) {
+export default function MemoHeaderTitle({ action }) {
   let title;
 
-  switch (mode) {
+  switch (action) {
     case "index":
       title = "一覧";
       break;
@@ -10,7 +10,7 @@ export default function MemoHeaderTitle({ mode }) {
       title = "編集";
       break;
     default:
-      new Error("modeは一覧か編集のみしか許可されていません。");
+      new Error("actionは一覧か編集のみしか許可されていません。");
   }
 
   return <span className="header__title header__title--gray">{title}</span>;

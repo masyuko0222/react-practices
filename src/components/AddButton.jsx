@@ -1,5 +1,5 @@
-export default function AddButton({ onClickAdd, mode }) {
-  const color = mode === "new" ? "black" : "blue";
+export default function AddButton({ onClickAdd, action }) {
+  const color = action === "new" ? "black" : "blue";
 
   return (
     <button

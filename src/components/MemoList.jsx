@@ -1,21 +1,23 @@
-export default function MemoList({ allMemos, onMemoRowClick }) {
+export default function MemoList({ allMemos, onMemoTitleClick }) {
   return (
     <div className="main-container__memo-list">
       {allMemos.map((memo) => (
-        <MemoRow key={memo.id} memo={memo} onMemoRowClick={onMemoRowClick} />
+        <MemoTitle
+          key={memo.id}
+          memo={memo}
+          onMemoTitleClick={onMemoTitleClick}
+        />
       ))}
     </div>
   );
 }
 
-const MemoRow = ({ memo, onMemoRowClick }) => {
-  //const color = isTarget ? "black" : "blue";
-
+const MemoTitle = ({ memo, onMemoTitleClick }) => {
   return (
     <p
       className="main-container__memo-list--title"
       onClick={() => {
-        onMemoRowClick(memo.id);
+        onMemoTitleClick(memo.id);
       }}
     >
       {memo.content.split("\n")[0].trim()}

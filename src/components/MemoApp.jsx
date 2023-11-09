@@ -3,15 +3,15 @@ import MemoHeaderTitle from "./MemoHeaderTitle";
 import MemoBody from "./MemoBody";
 
 export default function MemoApp() {
-  const [mode, setMode] = useState("index");
+  const [action, setAction] = useState("index");
 
   return (
     <div>
       <div className="header">
-        <MemoHeaderTitle mode={mode} />
+        <MemoHeaderTitle action={action} />
       </div>
       <div className="body">
-        <MemoBody mode={mode} setMode={setMode} />
+        <MemoBody action={action} setAction={setAction} />
       </div>
     </div>
   );

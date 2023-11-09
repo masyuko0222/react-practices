@@ -3,7 +3,7 @@ import MemoList from "./MemoList";
 import AddButton from "./AddButton";
 import MemoForm from "./MemoForm";
 
-export default function MemoBody({ mode, setMode }) {
+export default function MemoBody({ action, setAction }) {
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState({});
@@ -47,16 +47,16 @@ export default function MemoBody({ mode, setMode }) {
     reset("index");
   };
 
-  const handleMemoRowClick = (id) => {
+  const handleMemoTitleClick = (id) => {
     const clickedMemo = allMemos.find((memo) => id === memo.id);
     openMemoForm(clickedMemo, "edit");
   };
 
   // for DRY functions
-  const openMemoForm = (memo, mode) => {
+  const openMemoForm = (memo, action) => {
     setEditingMemo(memo);
     setFormText(memo.content);
-    setMode(mode);
+    setAction(action);
   };
 
   const saveStorage = (memos) => {
@@ -64,19 +64,19 @@ export default function MemoBody({ mode, setMode }) {
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
-  const reset = (mode) => {
+  const reset = (action) => {
     setFormText("");
-    setMode(mode);
+    setAction(action);
   };
 
   return (
     <div>
       <div className="main-container">
-        <MemoList allMemos={allMemos} onMemoRowClick={handleMemoRowClick} />
-        <AddButton onClickAdd={handleAddButtonClick} mode={mode} />
+        <MemoList allMemos={allMemos} onMemoTitleClick={handleMemoTitleClick} />
+        <AddButton onClickAdd={handleAddButtonClick} action={action} />
       </div>
       <div className="form-container">
-        {mode !== "index" && (
+        {action !== "index" && (
           <MemoForm
             formText={formText}
             setFormText={setFormText}
