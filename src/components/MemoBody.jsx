@@ -18,14 +18,14 @@ export default function MemoBody({ mode, setMode }) {
     }
   }, []);
 
-  const handleAddButton = () => {
+  const handleAddButtonClick = () => {
     const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
     saveStorage([...allMemos, createdNewMemo]);
     openMemoForm(createdNewMemo, "new");
   };
 
-  const handleEditButton = () => {
+  const handleEditButtonClick = () => {
     if (text === null || text === undefined || text.trim() === "") {
       alert("保存するメモの内容を書いてください。");
       return;
@@ -39,14 +39,14 @@ export default function MemoBody({ mode, setMode }) {
     reset("index");
   };
 
-  const handleDeleteButton = () => {
+  const handleDeleteButtonClick = () => {
     const oneLessMemos = allMemos.filter((memo) => memo.id !== targetId);
 
     saveStorage(oneLessMemos);
     reset("index");
   };
 
-  const handleClickingMemoRow = (id) => {
+  const handleMemoRowClick = (id) => {
     const targetMemo = allMemos.find((memo) => memo.id === id);
 
     openMemoForm(targetMemo, "edit");
@@ -79,17 +79,17 @@ export default function MemoBody({ mode, setMode }) {
       <div className="main-container">
         <MemoList
           allMemos={allMemos}
-          onClickMemo={handleClickingMemoRow}
+          onMemoRowClick={handleMemoRowClick}
           targetId={targetId}
         />
-        <AddButton onClickAdd={handleAddButton} mode={mode} />
+        <AddButton onClickAdd={handleAddButtonClick} mode={mode} />
       </div>
       <div className="form-container">
         {mode !== "index" && (
           <MemoForm
             text={text}
-            onClickEdit={handleEditButton}
-            onClickDelete={handleDeleteButton}
+            onEditButtonClick={handleEditButtonClick}
+            onDeleteButtonClick={handleDeleteButtonClick}
             onChangeText={handleTextChange}
           />
         )}

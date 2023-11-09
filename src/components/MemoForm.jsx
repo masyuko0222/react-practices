@@ -1,15 +1,15 @@
 export default function MemoForm({
   text,
-  onClickEdit,
-  onClickDelete,
+  onEditButtonClick,
+  onDeleteButtonClick,
   onChangeText,
 }) {
   return (
     <div>
       <TextArea text={text} onChangeText={onChangeText} />
       <div className="form-container__buttons">
-        <EditButton onClickEdit={onClickEdit} />
-        <DeleteButton onClickDelete={onClickDelete} />
+        <EditButton onEditButtonClick={onEditButtonClick} />
+        <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
       </div>
     </div>
   );
@@ -28,17 +28,17 @@ const TextArea = ({ text, onChangeText }) => {
   );
 };
 
-const EditButton = ({ onClickEdit }) => {
+const EditButton = ({ onEditButtonClick }) => {
   return (
-    <button className="form-container__buttons--edit" onClick={onClickEdit}>
+    <button className="form-container__buttons--edit" onClick={onEditButtonClick}>
       編集
     </button>
   );
 };
 
-const DeleteButton = ({ onClickDelete }) => {
+const DeleteButton = ({ onDeleteButtonClick }) => {
   return (
-    <button className="form-container__buttons--delete" onClick={onClickDelete}>
+    <button className="form-container__buttons--delete" onClick={onDeleteButtonClick}>
       削除
     </button>
   );

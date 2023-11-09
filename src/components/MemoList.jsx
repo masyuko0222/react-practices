@@ -1,4 +1,4 @@
-export default function MemoList({ allMemos, onClickMemo, targetId }) {
+export default function MemoList({ allMemos, onMemoRowClick, targetId }) {
   return (
     <div className="main-container__memo-list">
       {allMemos.map((memo) => (
@@ -6,7 +6,7 @@ export default function MemoList({ allMemos, onClickMemo, targetId }) {
           key={memo.id}
           id={memo.id}
           title={memo.content.split("\n")[0].trim()}
-          onClickMemo={onClickMemo}
+          onMemoRowClick={onMemoRowClick}
           isTarget={memo.id === targetId}
         />
       ))}
@@ -14,7 +14,7 @@ export default function MemoList({ allMemos, onClickMemo, targetId }) {
   );
 }
 
-const MemoRow = ({ id, title, onClickMemo, isTarget }) => {
+const MemoRow = ({ id, title, onMemoRowClick, isTarget }) => {
   const color = isTarget ? "black" : "blue";
 
   return (
@@ -22,7 +22,7 @@ const MemoRow = ({ id, title, onClickMemo, isTarget }) => {
       style={{ color }}
       className="main-container__memo-list--title"
       onClick={() => {
-        onClickMemo(id);
+        onMemoRowClick(id);
       }}
     >
       {title}
