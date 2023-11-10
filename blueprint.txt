@@ -2,9 +2,9 @@
   - MemoHeaderTitle
   - MemoBody
     - MemoList
-      - MemoRow
+      - MemoTitle
     - AddButton
     - MemoForm
-      - TextArea
+      - FormTextArea
       - EditButton
       - DeleteButton

@@ -6,7 +6,7 @@ export default function MemoForm({
 }) {
   return (
     <div>
-      <TextArea formText={formText} setFormText={setFormText} />
+      <FormTextArea formText={formText} setFormText={setFormText} />
       <div className="form-container__buttons">
         <EditButton onEditButtonClick={onEditButtonClick} />
         <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
@@ -15,7 +15,7 @@ export default function MemoForm({
   );
 }
 
-const TextArea = ({ formText, setFormText }) => {
+const FormTextArea = ({ formText, setFormText }) => {
   const handleTextChange = (e) => {
     setFormText(e.target.value);
   };
