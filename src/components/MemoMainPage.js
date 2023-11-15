@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import MemoList from "./MemoList";
-import AddButton from "./AddButton";
+import AddNewMemoButton from "./AddNewMemoButton";
 import MemoForm from "./MemoForm";
 
 export default function MemoMainPage({ action, setAction }) {
@@ -19,7 +19,7 @@ export default function MemoMainPage({ action, setAction }) {
   }, []);
 
   // Event Handlers
-  const handleAddButtonClick = () => {
+  const handleAddNewMemoButtonClick = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
     saveStorage([...allMemos, newMemo]);
@@ -78,7 +78,7 @@ export default function MemoMainPage({ action, setAction }) {
           editingMemo={editingMemo}
           onMemoTitleClick={handleMemoTitleClick}
         />
-        <AddButton onAddButtonClick={handleAddButtonClick} action={action} />
+        <AddNewMemoButton onAddNewMemoButtonClick={handleAddNewMemoButtonClick} action={action} />
       </div>
       <div className="form-container">
         {action !== "index" && (

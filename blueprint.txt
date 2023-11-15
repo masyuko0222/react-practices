@@ -1,9 +1,9 @@
 - MemoApp
-  - MemoHeaderTitle
+  - ActionTitle
   - MemoBody
     - MemoList
       - MemoTitle
-    - AddButton
+    - AddNewMemoButton
     - MemoForm
       - FormTextArea
       - EditButton
