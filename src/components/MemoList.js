@@ -22,7 +22,7 @@ const MemoTitle = ({ memo, onMemoTitleClick, editingMemo }) => {
       className="main-container__memo-list--title"
       style={{ color }}
       onClick={() => {
-        onMemoTitleClick(memo.id);
+        onMemoTitleClick(memo);
       }}
     >
       {memoTitle}

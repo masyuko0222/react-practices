@@ -47,9 +47,9 @@ export default function MemoMainPage({ action, setAction }) {
     render("index");
   };
 
-  const handleMemoTitleClick = (id) => {
-    const clickedMemo = allMemos.find((memo) => id === memo.id);
-    openMemoForm(clickedMemo, "edit");
+  const handleMemoTitleClick = (clickedMemo) => {
+    const memo = allMemos.find((memo) => clickedMemo.id === memo.id);
+    openMemoForm(memo, "edit");
   };
 
   // for DRY functions
