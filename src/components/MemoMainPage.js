@@ -18,7 +18,7 @@ export default function MemoMainPage({ action, setAction }) {
     }
   }, []);
 
-  // Ivent Handlers
+  // Event Handlers
   const handleAddButtonClick = () => {
     const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
