@@ -9,10 +9,10 @@ export default function MemoMainPage({ action, setAction }) {
   const [editingMemo, setEditingMemo] = useState({});
 
   useEffect(() => {
-    const jsonAllMemos = localStorage.getItem("memos");
+    const allMemosJson = localStorage.getItem("memos");
 
-    if (jsonAllMemos) {
-      setAllMemos(JSON.parse(jsonAllMemos));
+    if (allMemosJson) {
+      setAllMemos(JSON.parse(allMemosJson));
     } else {
       setAllMemos([]);
     }
