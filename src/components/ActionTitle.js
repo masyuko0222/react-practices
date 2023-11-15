@@ -10,7 +10,7 @@ export default function ActionTitle({ action }) {
       title = "編集";
       break;
     default:
-      new Error("actionは一覧か編集のみしか許可されていません。");
+      throw new Error("actionは一覧か編集のみしか許可されていません。");
   }
 
   return <span className="header__title header__title--gray">{title}</span>;
