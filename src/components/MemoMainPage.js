@@ -3,7 +3,7 @@ import MemoList from "./MemoList";
 import AddButton from "./AddButton";
 import MemoForm from "./MemoForm";
 
-export default function MemoBody({ action, setAction }) {
+export default function MemoMainPage({ action, setAction }) {
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState({});

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import MemoHeaderTitle from "./MemoHeaderTitle";
-import MemoBody from "./MemoBody";
+import MemoMainPage from "./MemoMainPage";
 
 export default function MemoApp() {
   const [action, setAction] = useState("index");
@@ -11,7 +11,7 @@ export default function MemoApp() {
         <MemoHeaderTitle action={action} />
       </div>
       <div className="body">
-        <MemoBody action={action} setAction={setAction} />
+        <MemoMainPage action={action} setAction={setAction} />
       </div>
     </div>
   );
