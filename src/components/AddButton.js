@@ -5,9 +5,7 @@ export default function AddButton({ onAddButtonClick, action }) {
     <button
       className="main-container--add-button"
       style={{ color }}
-      onClick={() => {
-        onAddButtonClick();
-      }}
+      onClick={onAddButtonClick}
     >
       +
     </button>
