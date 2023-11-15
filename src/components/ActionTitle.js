@@ -1,4 +1,4 @@
-export default function MemoHeaderTitle({ action }) {
+export default function ActionTitle({ action }) {
   let title;
 
   switch (action) {

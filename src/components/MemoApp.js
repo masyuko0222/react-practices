@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MemoHeaderTitle from "./MemoHeaderTitle";
+import ActionTitle from "./ActionTitle";
 import MemoMainPage from "./MemoMainPage";
 
 export default function MemoApp() {
@@ -8,7 +8,7 @@ export default function MemoApp() {
   return (
     <div>
       <div className="header">
-        <MemoHeaderTitle action={action} />
+        <ActionTitle action={action} />
       </div>
       <div className="body">
         <MemoMainPage action={action} setAction={setAction} />
