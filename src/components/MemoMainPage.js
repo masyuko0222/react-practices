@@ -37,14 +37,14 @@ export default function MemoMainPage({ action, setAction }) {
     );
 
     saveStorage(updatedMemos);
-    render("index");
+    resetPage("index");
   };
 
   const handleDeleteButtonClick = () => {
     const oneLessMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
     saveStorage(oneLessMemos);
-    render("index");
+    resetPage("index");
   };
 
   const handleMemoTitleClick = (clickedMemo) => {
@@ -64,7 +64,7 @@ export default function MemoMainPage({ action, setAction }) {
     localStorage.setItem("memos", JSON.stringify(memos));
   };
 
-  const render = (action) => {
+  const resetPage = (action) => {
     setFormText("");
     setEditingMemo({});
     setAction(action);
