@@ -20,10 +20,10 @@ export default function MemoMainPage({ action, setAction }) {
 
   // Event Handlers
   const handleAddButtonClick = () => {
-    const createdNewMemo = { id: crypto.randomUUID(), content: "新規メモ" };
+    const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
-    saveStorage([...allMemos, createdNewMemo]);
-    openMemoForm(createdNewMemo, "new");
+    saveStorage([...allMemos, newMemo]);
+    openMemoForm(newMemo, "new");
   };
 
   const handleEditButtonClick = () => {
