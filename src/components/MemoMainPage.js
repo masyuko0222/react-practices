@@ -33,7 +33,7 @@ export default function MemoMainPage({ action, setAction }) {
     }
 
     const updatedMemos = allMemos.map((memo) =>
-      memo.id === editingMemo.id ? { ...editingMemo, content: formText } : memo,
+      memo.id === editingMemo.id ? { ...memo, content: formText } : memo,
     );
 
     saveStorage(updatedMemos);
