@@ -1,4 +1,4 @@
-export default function MemoList({ allMemos, onMemoTitleClick, editingMemo }) {
+export default function MemoList({ allMemos, editingMemo, onMemoTitleClick }) {
   return (
     <div className="main-container__memo-list">
       {allMemos.map((memo) => (

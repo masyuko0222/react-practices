@@ -75,8 +75,8 @@ export default function MemoMainPage({ action, setAction }) {
       <div className="main-container">
         <MemoList
           allMemos={allMemos}
-          onMemoTitleClick={handleMemoTitleClick}
           editingMemo={editingMemo}
+          onMemoTitleClick={handleMemoTitleClick}
         />
         <AddButton onAddButtonClick={handleAddButtonClick} action={action} />
       </div>
