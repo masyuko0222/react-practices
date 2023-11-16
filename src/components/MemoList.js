@@ -14,7 +14,9 @@ export default function MemoList({ allMemos, editingMemo, onMemoTitleClick }) {
 }
 
 const MemoTitle = ({ memo, onMemoTitleClick, editingMemo }) => {
-  const color = editingMemo && (memo.id === editingMemo.id) ? "black" : "blue" // editingMemoの初期値はnullのため存在確認してから。
+  // editingMemo can be null. So need to check existence.
+  const color = editingMemo && (memo.id === editingMemo.id) ? "black" : "blue"
+
   const memoTitle = memo.content.split("\n")[0].trim()
 
   return (
