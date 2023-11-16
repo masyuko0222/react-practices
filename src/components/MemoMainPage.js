@@ -6,17 +6,18 @@ import MemoForm from "./MemoForm";
 export default function MemoMainPage({ action, setAction }) {
   const initialMemos = () => {
     try {
-      const allMemosJson = localStorage.getItem("memos")
-      const initialMemos = allMemosJson === null ? [] : JSON.parse(allMemosJson)
-      return initialMemos
+      const allMemosJson = localStorage.getItem("memos");
+      const initialMemos =
+        allMemosJson === null ? [] : JSON.parse(allMemosJson);
+      return initialMemos;
     } catch (err) {
       if (err instanceof Error) {
-        console.error(err)
+        console.error(err);
       } else {
-        throw err
+        throw err;
       }
     }
-  }
+  };
 
   const [allMemos, setAllMemos] = useState(initialMemos);
   const [formText, setFormText] = useState("");
@@ -27,18 +28,18 @@ export default function MemoMainPage({ action, setAction }) {
       localStorage.setItem("memos", JSON.stringify(allMemos));
     } catch (error) {
       if (error instanceof Error) {
-        console.error(error.message)
+        console.error(error.message);
       } else {
         throw error;
       }
     }
-  }, [allMemos])
+  }, [allMemos]);
 
   // Event Handlers
   const handleAddNewMemoButtonClick = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
-    const nextMemos = [...allMemos, newMemo]
+    const nextMemos = [...allMemos, newMemo];
     setAllMemos(nextMemos);
     openMemoForm(newMemo, "new");
   };
@@ -90,7 +91,10 @@ export default function MemoMainPage({ action, setAction }) {
           editingMemo={editingMemo}
           onMemoTitleClick={handleMemoTitleClick}
         />
-        <AddNewMemoButton onAddNewMemoButtonClick={handleAddNewMemoButtonClick} action={action} />
+        <AddNewMemoButton
+          onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
+          action={action}
+        />
       </div>
       <div className="form-container">
         {action !== "index" && (
