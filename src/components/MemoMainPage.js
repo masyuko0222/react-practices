@@ -8,9 +8,11 @@ export default function MemoMainPage({ action, setAction }) {
     try {
       const allMemosJson = localStorage.getItem("memos");
       const initialMemos =
+        // If not exist "memos" key, return value is null.
         allMemosJson === null ? [] : JSON.parse(allMemosJson);
       return initialMemos;
     } catch (err) {
+      // Private browser may raise an exception.
       if (err instanceof Error) {
         console.error(err);
       } else {
@@ -27,6 +29,7 @@ export default function MemoMainPage({ action, setAction }) {
     try {
       localStorage.setItem("memos", JSON.stringify(allMemos));
     } catch (error) {
+      // If storage capacity is full, setItem raises an exception.
       if (error instanceof Error) {
         console.error(error.message);
       } else {
