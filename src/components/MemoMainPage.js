@@ -4,23 +4,35 @@ import AddNewMemoButton from "./AddNewMemoButton";
 import MemoForm from "./MemoForm";
 
 export default function MemoMainPage({ action, setAction }) {
-  const [allMemos, setAllMemos] = useState([]);
+  const initialMemos = () => {
+    try {
+      const allMemosJson = localStorage.getItem("memos")
+      const initialMemos = allMemosJson === null ? [] : JSON.parse(allMemosJson)
+      return initialMemos
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err)
+      } else {
+        throw err
+      }
+    }
+  }
+
+  const [allMemos, setAllMemos] = useState(initialMemos);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
 
   useEffect(() => {
-    const allMemosJson = localStorage.getItem("memos");
-
-    // If storage does not have "memos", return value is null.
-    if (allMemosJson === null) return;
-
     try {
-      setAllMemos(JSON.parse(allMemosJson));
+      localStorage.setItem("memos", JSON.stringify(allMemos));
     } catch (error) {
-      // Private browser may raise an exception.
-      console.error(error.message)
+      if (error instanceof Error) {
+        console.error(error.message)
+      } else {
+        throw error;
+      }
     }
-  }, []);
+  }, [allMemos])
 
   // Event Handlers
   const handleAddNewMemoButtonClick = () => {
@@ -28,7 +40,6 @@ export default function MemoMainPage({ action, setAction }) {
 
     const nextMemos = [...allMemos, newMemo]
     setAllMemos(nextMemos);
-    localStorage.setItem("memos", JSON.stringify(nextMemos));
     openMemoForm(newMemo, "new");
   };
 
@@ -43,7 +54,6 @@ export default function MemoMainPage({ action, setAction }) {
     );
 
     setAllMemos(updatedMemos);
-    localStorage.setItem("memos", JSON.stringify(updatedMemos));
     resetPage("index");
   };
 
@@ -51,7 +61,6 @@ export default function MemoMainPage({ action, setAction }) {
     const oneLessMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
     setAllMemos(oneLessMemos);
-    localStorage.setItem("memos", JSON.stringify(oneLessMemos));
     resetPage("index");
   };
 
