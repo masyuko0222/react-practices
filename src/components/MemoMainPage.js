@@ -26,7 +26,9 @@ export default function MemoMainPage({ action, setAction }) {
   const handleAddNewMemoButtonClick = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
-    saveStorage([...allMemos, newMemo]);
+    const nextMemos = [...allMemos, newMemo]
+    setAllMemos(nextMemos);
+    localStorage.setItem("memos", JSON.stringify(nextMemos));
     openMemoForm(newMemo, "new");
   };
 
@@ -40,14 +42,16 @@ export default function MemoMainPage({ action, setAction }) {
       memo.id === editingMemo.id ? { ...memo, content: formText } : memo,
     );
 
-    saveStorage(updatedMemos);
+    setAllMemos(updatedMemos);
+    localStorage.setItem("memos", JSON.stringify(updatedMemos));
     resetPage("index");
   };
 
   const handleDeleteButtonClick = () => {
     const oneLessMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
-    saveStorage(oneLessMemos);
+    setAllMemos(oneLessMemos);
+    localStorage.setItem("memos", JSON.stringify(oneLessMemos));
     resetPage("index");
   };
 
@@ -61,11 +65,6 @@ export default function MemoMainPage({ action, setAction }) {
     setEditingMemo(memo);
     setFormText(memo.content);
     setAction(action);
-  };
-
-  const saveStorage = (memos) => {
-    setAllMemos(memos);
-    localStorage.setItem("memos", JSON.stringify(memos));
   };
 
   const resetPage = (action) => {
