@@ -11,10 +11,14 @@ export default function MemoMainPage({ action, setAction }) {
   useEffect(() => {
     const allMemosJson = localStorage.getItem("memos");
 
-    if (allMemosJson) {
+    // If storage does not have "memos", return value is null.
+    if (allMemosJson === null) return;
+
+    try {
       setAllMemos(JSON.parse(allMemosJson));
-    } else {
-      setAllMemos([]);
+    } catch (error) {
+      // Private browser may raise an exception.
+      console.error(error.message)
     }
   }, []);
 
