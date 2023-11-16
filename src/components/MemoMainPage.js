@@ -6,7 +6,7 @@ import MemoForm from "./MemoForm";
 export default function MemoMainPage({ action, setAction }) {
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
-  const [editingMemo, setEditingMemo] = useState({});
+  const [editingMemo, setEditingMemo] = useState(null);
 
   useEffect(() => {
     const allMemosJson = localStorage.getItem("memos");
