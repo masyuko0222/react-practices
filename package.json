@@ -25,16 +25,7 @@
       "react-app",
       "react-app/jest",
       "prettier"
-    ],
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-      "requireConfigFile": false,
-      "babelOptions": {
-        "plugins": [
-          "@babel/plugin-proposal-private-property-in-object"
-        ]
-      }
-    }
+    ]
   },
   "browserslist": {
     "production": [
@@ -49,8 +40,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.23.3",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "^3.0.3"
