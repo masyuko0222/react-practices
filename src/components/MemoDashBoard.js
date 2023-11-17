@@ -68,7 +68,7 @@ export default function MemoDashBoard({ action, setAction }) {
   };
 
   const handleMemoTitleClick = (clickedMemo) => {
-    const memo = allMemos.find((memo) => clickedMemo.id === memo.id);
+    const memo = allMemos.find((memo) => memo.id === clickedMemo.id);
     openMemoForm(memo, "edit");
   };
 
