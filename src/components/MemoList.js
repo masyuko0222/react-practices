@@ -14,8 +14,7 @@ export default function MemoList({ allMemos, editingMemo, onMemoTitleClick }) {
 }
 
 const MemoTitle = ({ memo, onMemoTitleClick, editingMemo }) => {
-  // editingMemo can be null. So need to check existence.
-  const color = editingMemo && memo.id === editingMemo.id ? "black" : "blue";
+  const color = memo.id === editingMemo?.id ? "black" : "blue"
 
   const memoTitle = memo.content.split("\n")[0].trim();
 
