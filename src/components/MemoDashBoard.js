@@ -61,9 +61,9 @@ export default function MemoDashBoard({ action, setAction }) {
   };
 
   const handleDeleteButtonClick = () => {
-    const oneLessMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
+    const remainingMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
-    setAllMemos(oneLessMemos);
+    setAllMemos(remainingMemos);
     resetPage("index");
   };
 
