@@ -18,7 +18,7 @@ export default function MemoMainPage({ action, setAction }) {
       setAllMemos(JSON.parse(allMemosJson));
     } catch (error) {
       // Private browser may raise an exception.
-      console.error(error.message)
+      console.error(error.message);
     }
   }, []);
 
@@ -46,7 +46,9 @@ export default function MemoMainPage({ action, setAction }) {
   };
 
   const handleDeleteButtonClick = () => {
-    const remainingMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
+    const remainingMemos = allMemos.filter(
+      (memo) => memo.id !== editingMemo.id,
+    );
 
     setAllMemos(remainingMemos);
     localStorage.setItem("memos", JSON.stringify(remainingMemos));
