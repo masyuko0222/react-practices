@@ -42,8 +42,7 @@ export default function MemoDashBoard({ action, setAction }) {
   const handleAddNewMemoButtonClick = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
 
-    const nextMemos = [...allMemos, newMemo];
-    setAllMemos(nextMemos);
+    setAllMemos([...allMemos, newMemo]);
     openMemoForm(newMemo, "new");
   };
 
