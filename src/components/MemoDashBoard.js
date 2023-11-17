@@ -47,7 +47,7 @@ export default function MemoDashBoard({ action, setAction }) {
   };
 
   const handleEditButtonClick = () => {
-    if (formText === null || formText === undefined || formText.trim() === "") {
+    if (formText.trim() === "") {
       alert("保存するメモの内容を書いてください。");
       return;
     }
