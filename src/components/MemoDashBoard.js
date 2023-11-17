@@ -95,8 +95,8 @@ export default function MemoDashBoard({ action, setAction }) {
           onMemoTitleClick={handleMemoTitleClick}
         />
         <AddNewMemoButton
-          onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
           action={action}
+          onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
         />
       </div>
       <div className="form-container">

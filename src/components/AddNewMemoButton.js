@@ -1,4 +1,4 @@
-export default function AddNewMemoButton({ onAddNewMemoButtonClick, action }) {
+export default function AddNewMemoButton({ action, onAddNewMemoButtonClick }) {
   const color = action === "new" ? "black" : "blue";
 
   return (
