@@ -49,6 +49,7 @@ export default function MemoMainPage({ action, setAction }) {
     const remainingMemos = allMemos.filter((memo) => memo.id !== editingMemo.id);
 
     setAllMemos(remainingMemos);
+    localStorage.setItem("memos", JSON.stringify(remainingMemos));
     resetPage("index");
   };
 
