@@ -3,7 +3,7 @@ import MemoList from "./MemoList";
 import AddNewMemoButton from "./AddNewMemoButton";
 import MemoForm from "./MemoForm";
 
-export default function MemoMainPage({ action, setAction }) {
+export default function MemoDashBoard({ action, setAction }) {
   const initialMemos = () => {
     try {
       const allMemosJson = localStorage.getItem("memos");
