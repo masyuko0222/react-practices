@@ -3,40 +3,24 @@ import MemoList from "./MemoList";
 import AddNewMemoButton from "./AddNewMemoButton";
 import MemoForm from "./MemoForm";
 
-export default function MemoDashBoard({ action, setAction }) {
-  const initialMemos = () => {
-    try {
-      const allMemosJson = localStorage.getItem("memos");
-      const initialMemos =
-        // If not exist "memos" key, return value is null.
-        allMemosJson === null ? [] : JSON.parse(allMemosJson);
-      return initialMemos;
-    } catch (err) {
-      // Private browser may raise an exception.
-      if (err instanceof Error) {
-        console.error(err);
-      } else {
-        throw err;
-      }
-    }
-  };
-
-  const [allMemos, setAllMemos] = useState(initialMemos);
+export default function MemoMainPage({ action, setAction }) {
+  const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
 
   useEffect(() => {
+    const allMemosJson = localStorage.getItem("memos");
+
+    // If storage does not have "memos", return value is null.
+    if (allMemosJson === null) return;
+
     try {
-      localStorage.setItem("memos", JSON.stringify(allMemos));
+      setAllMemos(JSON.parse(allMemosJson));
     } catch (error) {
-      // If storage capacity is full, setItem raises an exception.
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        throw error;
-      }
+      // Private browser may raise an exception.
+      console.error(error.message)
     }
-  }, [allMemos]);
+  }, []);
 
   // Event Handlers
   const handleAddNewMemoButtonClick = () => {
@@ -57,6 +41,7 @@ export default function MemoDashBoard({ action, setAction }) {
     );
 
     setAllMemos(updatedMemos);
+    localStorage.setItem("memos", JSON.stringify(updatedMemos));
     resetPage("index");
   };
 
