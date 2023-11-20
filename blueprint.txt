@@ -1,0 +1,10 @@
+- MemoApp
+  - ActionTitle
+  - MemoBody
+    - MemoList
+      - MemoTitle
+    - AddNewMemoButton
+    - MemoForm
+      - FormTextArea
+      - EditButton
+      - DeleteButton

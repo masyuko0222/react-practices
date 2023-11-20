@@ -1,38 +1,88 @@
-.App {
+body {
+  background-color: #f5f5f5;
+}
+
+.header {
+  margin: 0.5em;
+  font-size: 20px;
+}
+
+.header__title--gray {
+  color: gray;
+}
+
+.body {
+  border: 1px solid #000;
+  padding: 10px;
+  background-color: #fff;
+  margin: 0.5em;
+  height: 100vh;
+}
+
+.wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.main-container__memo-list {
+  margin: 0.5rem;
+}
+
+.main-container__memo-list--title {
+  font-size: 20px;
+  color: blue;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.main-container--add-button {
+  font-size: 30px;
+  color: blue;
+  margin-left: 0.5rem;
+}
+
+.form-container {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 60%;
+  height: 150%;
+}
+
+.form-container__text-area {
+  width: 100%;
+  height: 500px;
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: white;
+  font-size: 20px;
+}
+
+.form-container__buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-container__buttons--edit,
+.form-container__buttons--delete {
+  background-color: #dcdcdc;
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-container__buttons--edit {
+  width: 69%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-container__buttons--delete {
+  width: 29%;
 }
