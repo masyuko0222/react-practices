@@ -69,7 +69,7 @@ export default function MemoMain({ action, setAction }) {
 
   const resetPage = (action) => {
     setFormText("");
-    setEditingMemo({});
+    setEditingMemo(null);
     setAction(action);
   };
 
