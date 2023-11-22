@@ -8,7 +8,7 @@ import {
 } from "./index";
 
 export default function MemoMain({ action, setAction }) {
-  const { isLoggedIn } = useContext(AuthStatusContext)
+  const { isLoggedIn } = useContext(AuthStatusContext);
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
@@ -20,7 +20,7 @@ export default function MemoMain({ action, setAction }) {
     try {
       setAllMemos(JSON.parse(allMemosJson));
     } catch (error) {
-      console.error(error.message);  // Private browser may raise an exception
+      console.error(error.message); // Private browser may raise an exception
     }
   }, []);
 
@@ -88,12 +88,12 @@ export default function MemoMain({ action, setAction }) {
           editingMemo={editingMemo}
           onMemoTitleClick={handleMemoTitleClick}
         />
-        { isLoggedIn &&
+        {isLoggedIn && (
           <AddNewMemoButton
             action={action}
             onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
           />
-        }
+        )}
         <SwitchAuthStatusButton />
       </div>
       <div className="form-container">

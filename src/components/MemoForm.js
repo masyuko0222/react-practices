@@ -1,16 +1,23 @@
+import { useContext } from "react";
+import { AuthStatusContext } from "../context/AuthStatusContext";
+
 export default function MemoForm({
   formText,
   setFormText,
   onEditButtonClick,
   onDeleteButtonClick,
 }) {
+  const { isLoggedIn } = useContext(AuthStatusContext);
+
   return (
     <div>
       <FormTextArea formText={formText} setFormText={setFormText} />
-      <div className="form-container__buttons">
-        <EditButton onEditButtonClick={onEditButtonClick} />
-        <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
-      </div>
+      {isLoggedIn && (
+        <div className="form-container__buttons">
+          <EditButton onEditButtonClick={onEditButtonClick} />
+          <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
+        </div>
+      )}
     </div>
   );
 }
