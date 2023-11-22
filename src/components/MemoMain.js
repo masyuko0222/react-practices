@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthStatusContext } from "../context/AuthStatusContext";
 import {
   MemoList,
   AddNewMemoButton,
@@ -7,6 +8,7 @@ import {
 } from "./index";
 
 export default function MemoMain({ action, setAction }) {
+  const { isLoggedIn } = useContext(AuthStatusContext)
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
@@ -40,7 +42,6 @@ export default function MemoMain({ action, setAction }) {
     const updatedMemos = allMemos.map((memo) =>
       memo.id === editingMemo.id ? { ...memo, content: formText } : memo,
     );
-
     setAllMemos(updatedMemos);
     localStorage.setItem("memos", JSON.stringify(updatedMemos));
     resetPage("index");
@@ -87,10 +88,12 @@ export default function MemoMain({ action, setAction }) {
           editingMemo={editingMemo}
           onMemoTitleClick={handleMemoTitleClick}
         />
-        <AddNewMemoButton
-          action={action}
-          onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
-        />
+        { isLoggedIn &&
+          <AddNewMemoButton
+            action={action}
+            onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
+          />
+        }
         <SwitchAuthStatusButton />
       </div>
       <div className="form-container">
