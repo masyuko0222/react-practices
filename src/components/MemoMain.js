@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { MemoList, AddNewMemoButton, MemoForm, SwitchAuthStatusButton } from "./index";
+import {
+  MemoList,
+  AddNewMemoButton,
+  MemoForm,
+  SwitchAuthStatusButton,
+} from "./index";
 
 export default function MemoMain({ action, setAction }) {
   const [allMemos, setAllMemos] = useState([]);
