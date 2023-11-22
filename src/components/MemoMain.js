@@ -13,22 +13,20 @@ export default function MemoMain({ action, setAction }) {
 
   useEffect(() => {
     const allMemosJson = localStorage.getItem("memos");
-
-    // If storage does not have "memos", return value is null.
-    if (allMemosJson === null) return;
+    if (allMemosJson === null) return; // If storage does not have "memos", return value is null.
 
     try {
       setAllMemos(JSON.parse(allMemosJson));
     } catch (error) {
-      // Private browser may raise an exception.
-      console.error(error.message);
+      console.error(error.message);  // Private browser may raise an exception
     }
   }, []);
 
-  // Event Handlers
+  ///////////////////////
+  //** Event handlers **/
+  ///////////////////////
   const handleAddNewMemoButtonClick = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
-
     setAllMemos([...allMemos, newMemo]);
     openMemoForm(newMemo, "new");
   };
@@ -63,7 +61,9 @@ export default function MemoMain({ action, setAction }) {
     openMemoForm(memo, "edit");
   };
 
-  // for DRY functions
+  ////////////////
+  //** For DRY **/
+  ////////////////
   const openMemoForm = (memo, action) => {
     setEditingMemo(memo);
     setFormText(memo.content);
@@ -76,6 +76,9 @@ export default function MemoMain({ action, setAction }) {
     setAction(action);
   };
 
+  //////////////////
+  //** Component **/
+  //////////////////
   return (
     <div>
       <div className="main-container">
