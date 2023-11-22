@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import MemoList from "./MemoList";
-import AddNewMemoButton from "./AddNewMemoButton";
-import MemoForm from "./MemoForm";
+import { MemoList, AddNewMemoButton, MemoForm, SwitchAuthStatusButton } from "./index";
 
 export default function MemoMain({ action, setAction }) {
   const [allMemos, setAllMemos] = useState([]);
@@ -85,6 +83,7 @@ export default function MemoMain({ action, setAction }) {
           action={action}
           onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
         />
+        <SwitchAuthStatusButton />
       </div>
       <div className="form-container">
         {action !== "index" && (
