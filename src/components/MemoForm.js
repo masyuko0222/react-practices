@@ -10,7 +10,7 @@ export default function MemoForm({
 
   return (
     <div>
-      <FormTextArea formText={formText} setFormText={setFormText} />
+      <FormTextArea formText={formText} setFormText={setFormText} isAuthenticated={isAuthenticated} />
       {isAuthenticated && (
         <div className="form-container__buttons">
           <EditButton onEditButtonClick={onEditButtonClick} />
@@ -21,9 +21,11 @@ export default function MemoForm({
   );
 }
 
-const FormTextArea = ({ formText, setFormText }) => {
+const FormTextArea = ({ formText, setFormText, isAuthenticated }) => {
   const handleTextChange = (e) => {
-    setFormText(e.target.value);
+    if (isAuthenticated) {
+      setFormText(e.target.value);
+    }
   };
 
   return (
