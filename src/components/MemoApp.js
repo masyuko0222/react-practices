@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { AuthStatusProvider } from "../context/AuthStatusContext";
 import AuthStatus from "./AuthStatus";
 import MemoMain from "./MemoMain";
 
 export default function MemoApp() {
-  const [action, setAction] = useState("index");
-
   return (
     <AuthStatusProvider>
       <>
@@ -13,7 +10,7 @@ export default function MemoApp() {
           <AuthStatus />
         </div>
         <div className="body">
-          <MemoMain action={action} setAction={setAction} />
+          <MemoMain />
         </div>
       </>
     </AuthStatusProvider>

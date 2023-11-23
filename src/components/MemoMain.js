@@ -7,8 +7,9 @@ import {
   SwitchAuthStatusButton,
 } from "./index";
 
-export default function MemoMain({ action, setAction }) {
+export default function MemoMain() {
   const { isAuthenticated } = useAuthStatus();
+  const [action, setAction] = useState("index");
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
