@@ -3,4 +3,4 @@ import { AuthStatusContext } from "../context/AuthStatusContext";
 
 export const useAuthStatus = () => {
   return useContext(AuthStatusContext);
-}
+};

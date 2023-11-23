@@ -6,11 +6,15 @@ export default function MemoForm({
   onEditButtonClick,
   onDeleteButtonClick,
 }) {
-  const { isAuthenticated } = useAuthStatus()
+  const { isAuthenticated } = useAuthStatus();
 
   return (
     <div>
-      <FormTextArea formText={formText} setFormText={setFormText} isAuthenticated={isAuthenticated} />
+      <FormTextArea
+        formText={formText}
+        setFormText={setFormText}
+        isAuthenticated={isAuthenticated}
+      />
       {isAuthenticated && (
         <div className="form-container__buttons">
           <EditButton onEditButtonClick={onEditButtonClick} />

@@ -1,7 +1,7 @@
 import { useAuthStatus } from "../hook/useAuthStatus";
 
 export default function SwitchAuthStatusButton() {
-  const { isAuthenticated, setIsAuthenticated } = useAuthStatus()
+  const { isAuthenticated, setIsAuthenticated } = useAuthStatus();
 
   // スコープが狭いため、短め命名
   const handleAuthButton = () => {

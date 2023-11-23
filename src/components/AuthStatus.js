@@ -1,7 +1,7 @@
 import { useAuthStatus } from "../hook/useAuthStatus";
 
 export default function AuthStatus() {
-  const { isAuthenticated } = useAuthStatus()
+  const { isAuthenticated } = useAuthStatus();
 
   return (
     <span className="header__title--gray">
