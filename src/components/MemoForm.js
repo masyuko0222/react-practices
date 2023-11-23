@@ -7,12 +7,12 @@ export default function MemoForm({
   onEditButtonClick,
   onDeleteButtonClick,
 }) {
-  const { isLoggedIn } = useContext(AuthStatusContext);
+  const { isAuthenticated } = useContext(AuthStatusContext);
 
   return (
     <div>
       <FormTextArea formText={formText} setFormText={setFormText} />
-      {isLoggedIn && (
+      {isAuthenticated && (
         <div className="form-container__buttons">
           <EditButton onEditButtonClick={onEditButtonClick} />
           <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />

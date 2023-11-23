@@ -8,7 +8,7 @@ import {
 } from "./index";
 
 export default function MemoMain({ action, setAction }) {
-  const { isLoggedIn } = useContext(AuthStatusContext);
+  const { isAuthenticated } = useContext(AuthStatusContext);
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
@@ -88,7 +88,7 @@ export default function MemoMain({ action, setAction }) {
           editingMemo={editingMemo}
           onMemoTitleClick={handleMemoTitleClick}
         />
-        {isLoggedIn && (
+        {isAuthenticated && (
           <AddNewMemoButton
             action={action}
             onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
