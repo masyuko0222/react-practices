@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthStatusContext } from "../context/AuthStatusContext";
+import {  useEffect, useState } from "react";
+import { useAuthStatus } from "../hook/useAuthStatus";
 import {
   MemoList,
   AddNewMemoButton,
@@ -8,7 +8,7 @@ import {
 } from "./index";
 
 export default function MemoMain({ action, setAction }) {
-  const { isAuthenticated } = useContext(AuthStatusContext);
+  const { isAuthenticated } = useAuthStatus();
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);

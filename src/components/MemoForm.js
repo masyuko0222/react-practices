@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { AuthStatusContext } from "../context/AuthStatusContext";
+import { useAuthStatus } from "../hook/useAuthStatus";
 
 export default function MemoForm({
   formText,
@@ -7,7 +6,7 @@ export default function MemoForm({
   onEditButtonClick,
   onDeleteButtonClick,
 }) {
-  const { isAuthenticated } = useContext(AuthStatusContext);
+  const { isAuthenticated } = useAuthStatus()
 
   return (
     <div>

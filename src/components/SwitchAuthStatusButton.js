@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { AuthStatusContext } from "../context/AuthStatusContext";
+import { useAuthStatus } from "../hook/useAuthStatus";
 
 export default function SwitchAuthStatusButton() {
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthStatusContext);
+  const { isAuthenticated, setIsAuthenticated } = useAuthStatus()
 
   // スコープが狭いため、短め命名
   const handleAuthButton = () => {

@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { AuthStatusContext } from "../context/AuthStatusContext";
+import { useAuthStatus } from "../hook/useAuthStatus";
 
 export default function AuthStatus() {
-  const { isAuthenticated } = useContext(AuthStatusContext);
+  const { isAuthenticated } = useAuthStatus()
 
   return (
     <span className="header__title--gray">
