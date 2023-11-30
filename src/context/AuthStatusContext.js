@@ -7,11 +7,11 @@ export const AuthStatusProvider = ({ children }) => {
 
   const login = () => {
     setIsAuthenticated(true);
-  }
+  };
 
   const logout = () => {
     setIsAuthenticated(false);
-  }
+  };
 
   return (
     <AuthStatusContext.Provider value={{ isAuthenticated, login, logout }}>
