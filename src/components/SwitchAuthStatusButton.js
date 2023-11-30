@@ -1,16 +1,17 @@
 import { useAuthStatus } from "../hook/useAuthStatus";
 
 export default function SwitchAuthStatusButton() {
-  const { isAuthenticated, setIsAuthenticated } = useAuthStatus();
-
-  // スコープが狭いため、短め命名
-  const handleAuthButton = () => {
-    setIsAuthenticated(!isAuthenticated);
-  };
+  const { isAuthenticated, login, logout } = useAuthStatus();
 
   return (
-    <button className="main-container--auth-button" onClick={handleAuthButton}>
-      {isAuthenticated ? "ログアウト" : "ログイン"}
-    </button>
+    isAuthenticated ?
+      <Button onClick={logout}>ログアウト</Button> :
+      <Button onClick={login}>ログイン</Button>
   );
+}
+
+const Button = ({ onClick, children }) => {
+  return (
+    <button onClick={onClick} className="main-container--auth-button">{children}</button>
+  )
 }
