@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuthStatus } from "../hook/useAuthStatus";
-import {
-  MemoList,
-  AddNewMemoButton,
-  MemoForm,
-  SwitchAuthStatusButton,
-} from "./index";
+import AddNewMemoButton from "./AddNewMemoButton";
+import MemoForm from "./MemoForm";
+import MemoList from "./MemoList";
+import SwitchAuthStatusButton from "./SwitchAuthStatusButton";
 
 export default function MemoMain() {
   const { isAuthenticated } = useAuthStatus();
