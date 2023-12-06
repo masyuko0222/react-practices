@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react";
-import MemoList from "./MemoList";
+import { useAuthStatus } from "../hook/useAuthStatus";
 import AddNewMemoButton from "./AddNewMemoButton";
 import MemoForm from "./MemoForm";
+import MemoList from "./MemoList";
+import SwitchAuthStatusButton from "./SwitchAuthStatusButton";
 
-export default function MemoMain({ action, setAction }) {
+export default function MemoMain() {
+  const { isAuthenticated } = useAuthStatus();
+  const [action, setAction] = useState("index");
   const [allMemos, setAllMemos] = useState([]);
   const [formText, setFormText] = useState("");
   const [editingMemo, setEditingMemo] = useState(null);
 
   useEffect(() => {
     const allMemosJson = localStorage.getItem("memos");
-
-    // If storage does not have "memos", return value is null.
-    if (allMemosJson === null) return;
+    if (allMemosJson === null) return; // If storage does not have "memos", return value is null.
 
     try {
       setAllMemos(JSON.parse(allMemosJson));
     } catch (error) {
-      // Private browser may raise an exception.
-      console.error(error.message);
+      console.error(error.message); // Private browser may raise an exception
     }
   }, []);
 
-  // Event Handlers
+  ///////////////////////
+  //** Event handlers **/
+  ///////////////////////
   const handleAddNewMemoButtonClick = () => {
     const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
-
     setAllMemos([...allMemos, newMemo]);
     openMemoForm(newMemo, "new");
   };
@@ -39,7 +41,6 @@ export default function MemoMain({ action, setAction }) {
     const updatedMemos = allMemos.map((memo) =>
       memo.id === editingMemo.id ? { ...memo, content: formText } : memo,
     );
-
     setAllMemos(updatedMemos);
     localStorage.setItem("memos", JSON.stringify(updatedMemos));
     resetPage("index");
@@ -60,7 +61,9 @@ export default function MemoMain({ action, setAction }) {
     openMemoForm(memo, "edit");
   };
 
-  // for DRY functions
+  ////////////////
+  //** For DRY **/
+  ////////////////
   const openMemoForm = (memo, action) => {
     setEditingMemo(memo);
     setFormText(memo.content);
@@ -73,6 +76,9 @@ export default function MemoMain({ action, setAction }) {
     setAction(action);
   };
 
+  //////////////////
+  //** Component **/
+  //////////////////
   return (
     <div>
       <div className="main-container">
@@ -81,10 +87,13 @@ export default function MemoMain({ action, setAction }) {
           editingMemo={editingMemo}
           onMemoTitleClick={handleMemoTitleClick}
         />
-        <AddNewMemoButton
-          action={action}
-          onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
-        />
+        {isAuthenticated && (
+          <AddNewMemoButton
+            action={action}
+            onAddNewMemoButtonClick={handleAddNewMemoButtonClick}
+          />
+        )}
+        <SwitchAuthStatusButton />
       </div>
       <div className="form-container">
         {action !== "index" && (

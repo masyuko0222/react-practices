@@ -1,23 +1,35 @@
+import { useAuthStatus } from "../hook/useAuthStatus";
+
 export default function MemoForm({
   formText,
   setFormText,
   onEditButtonClick,
   onDeleteButtonClick,
 }) {
+  const { isAuthenticated } = useAuthStatus();
+
   return (
     <div>
-      <FormTextArea formText={formText} setFormText={setFormText} />
-      <div className="form-container__buttons">
-        <EditButton onEditButtonClick={onEditButtonClick} />
-        <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
-      </div>
+      <FormTextArea
+        formText={formText}
+        setFormText={setFormText}
+        isAuthenticated={isAuthenticated}
+      />
+      {isAuthenticated && (
+        <div className="form-container__buttons">
+          <EditButton onEditButtonClick={onEditButtonClick} />
+          <DeleteButton onDeleteButtonClick={onDeleteButtonClick} />
+        </div>
+      )}
     </div>
   );
 }
 
-const FormTextArea = ({ formText, setFormText }) => {
+const FormTextArea = ({ formText, setFormText, isAuthenticated }) => {
   const handleTextChange = (e) => {
-    setFormText(e.target.value);
+    if (isAuthenticated) {
+      setFormText(e.target.value);
+    }
   };
 
   return (

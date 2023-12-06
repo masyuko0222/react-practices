@@ -1,9 +1,10 @@
 - MemoApp
-  - ActionTitle
-  - MemoBody
+  - AuthStatus
+  - MemoMain
     - MemoList
       - MemoTitle
     - AddNewMemoButton
+    - SwitchAuthStatusButton
     - MemoForm
       - FormTextArea
       - EditButton
